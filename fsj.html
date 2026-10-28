@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Build, customize, and export a professional resume with ResumeAI." />
+  <title>ResumeAI — Smart Resume Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="ResumeAI home">
+        <span class="brand-icon">R<span>✦</span></span>
+        <span class="brand-copy">
+          <strong>resume<span>ai</span></strong>
+          <small>SMART RESUME STUDIO</small>
+        </span>
+      </a>
+
+      <div class="top-actions">
+        <span class="saved-status" id="saveStatus">
+          <span class="status-dot"></span> Auto-save enabled
+        </span>
+        <button class="btn btn-light" id="sampleBtn" type="button">
+          <span>✦</span> Try sample
+        </button>
+        <button class="btn btn-primary" id="downloadBtn" type="button">
+          ↓ Export PDF
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="welcome-section">
+        <div>
+          <div class="eyebrow"><span class="sparkle">✦</span> YOUR CAREER, YOUR STORY</div>
+          <h1>Build a resume that<br /><span>opens new doors.</span></h1>
+          <p class="welcome-copy">
+            Tell your story. Highlight your skills. Get ready for your next opportunity.
+          </p>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+          <div class="art-orbit"></div>
+          <div class="art-sheet">
+            <div class="art-avatar">R</div>
+            <div class="art-line long"></div>
+            <div class="art-line medium"></div>
+            <div class="art-chip"></div>
+            <div class="art-line short"></div>
+            <div class="art-line medium"></div>
+          </div>
+          <span class="art-star star-one">✦</span>
+          <span class="art-star star-two">✧</span>
+          <span class="art-badge">CV READY ✓</span>
+        </div>
+      </section>
+
+      <section class="progress-card" aria-label="Resume completion">
+        <div class="progress-info">
+          <div>
+            <span class="progress-label">YOUR PROGRESS</span>
+            <h3 id="progressHeading">Let's build your resume</h3>
+            <p id="progressMessage">Add your details to get started.</p>
+          </div>
+          <div class="progress-number"><strong id="progressValue">0%</strong><span>complete</span></div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </section>
+
+      <div class="workspace">
+        <section class="editor-panel">
+          <div class="panel-heading">
+            <div>
+              <div class="section-kicker">RESUME WORKSPACE</div>
+              <h2>Make it yours<span class="heading-period">.</span></h2>
+              <p>Fill in the details below. Your preview updates instantly.</p>
+            </div>
+            <span class="edit-icon">✎</span>
+          </div>
+
+          <form id="resumeForm" autocomplete="on">
+            <section class="form-section">
+              <div class="section-title">
+                <span class="section-icon violet">01</span>
+                <div><h3>Personal information</h3><p>Start with the basics.</p></div>
+              </div>
+              <div class="form-grid">
+                <label class="field full">
+                  <span>Full name <b>*</b></span>
+                  <input id="fullName" name="fullName" placeholder="e.g. Alex Morgan" required />
+                </label>
+                <label class="field full">
+                  <span>Professional title <b>*</b></span>
+                  <input id="jobTitle" name="jobTitle" placeholder="e.g. Aspiring Full Stack Developer" required />
+                </label>
+                <label class="field">
+                  <span>Email address <b>*</b></span>
+                  <input id="email" name="email" type="email" placeholder="alex@email.com" required />
+                </label>
+                <label class="field">
+                  <span>Phone number</span>
+                  <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" />
+                </label>
+                <label class="field">
+                  <span>Location</span>
+                  <input id="location" name="location" placeholder="Pune, India" />
+                </label>
+                <label class="field">
+                  <span>LinkedIn / Portfolio</span>
+                  <input id="linkedin" name="linkedin" placeholder="linkedin.com/in/yourname" />
+                </label>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="section-title">
+                <span class="section-icon pink">02</span>
+                <div><h3>Professional summary</h3><p>A quick introduction to you.</p></div>
+              </div>
+              <label class="field">
+                <span>About you</span>
+                <textarea id="summary" name="summary" rows="4"
+                  placeholder="Write 2–4 lines about your goals, strengths, and interests..."></textarea>
+              </label>
+              <div class="assist-row">
+                <span class="assist-note">✦ Built-in smart writing demo · No API key required</span>
+                <button class="btn btn-assist" id="improveSummaryBtn" type="button">✧ Smart draft</button>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="section-title">
+                <span class="section-icon blue">03</span>
+                <div><h3>Education</h3><p>Show your academic background.</p></div>
+              </div>
+              <div class="form-grid">
+                <label class="field full">
+                  <span>Degree / Course</span>
+                  <input id="degree" name="degree" placeholder="B.Tech in Computer Science" />
+                </label>
+                <label class="field full">
+                  <span>College / University</span>
+                  <input id="institution" name="institution" placeholder="Your college name" />
+                </label>
+                <label class="field">
+                  <span>Graduation year</span>
+                  <input id="gradYear" name="gradYear" placeholder="2028" />
+                </label>
+                <label class="field">
+                  <span>CGPA / Percentage</span>
+                  <input id="grade" name="grade" placeholder="8.5 CGPA (optional)" />
+                </label>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="section-title">
+                <span class="section-icon green">04</span>
+                <div><h3>Technical & soft skills</h3><p>Separate skills with commas.</p></div>
+              </div>
+              <label class="field">
+                <span>Your skills</span>
+                <textarea id="skills" name="skills" rows="3"
+                  placeholder="HTML, CSS, JavaScript, Java, Communication, Problem-solving"></textarea>
+              </label>
+              <div class="skill-tip">TIP: Add skills you can confidently discuss in an interview.</div>
+            </section>
+
+            <section class="form-section">
+              <div class="section-title">
+                <span class="section-icon orange">05</span>
+                <div><h3>Experience / Internship</h3><p>Include internships, jobs, or relevant volunteering.</p></div>
+              </div>
+              <div id="experienceList"></div>
+              <button class="btn btn-add" id="addExperienceBtn" type="button">＋ Add experience</button>
+            </section>
+
+            <section class="form-section">
+              <div class="section-title">
+                <span class="section-icon violet">06</span>
+                <div><h3>Projects</h3><p>Demonstrate what you have built.</p></div>
+              </div>
+              <div id="projectList"></div>
+              <button class="btn btn-add" id="addProjectBtn" type="button">＋ Add project</button>
+            </section>
+
+            <section class="form-section last-section">
+              <div class="section-title">
+                <span class="section-icon pink">07</span>
+                <div><h3>Certifications & achievements</h3><p>Add relevant courses, awards, or accomplishments.</p></div>
+              </div>
+              <label class="field">
+                <span>One item per line</span>
+                <textarea id="certifications" name="certifications" rows="3"
+                  placeholder="Java Programming — Course Provider&#10;Hackathon participant — 2026"></textarea>
+              </label>
+            </section>
+
+            <div class="form-footer">
+              <button class="btn btn-light" id="clearBtn" type="button">Clear form</button>
+              <button class="btn btn-primary" id="downloadBottomBtn" type="button">↓ Export my resume</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="preview-column">
+          <div class="preview-toolbar">
+            <div>
+              <span class="live-dot"></span>
+              <strong>Live preview</strong>
+              <span class="preview-subtitle">A4 DOCUMENT</span>
+            </div>
+            <button class="icon-btn" id="printBtn" type="button" title="Print resume" aria-label="Print resume">⤴</button>
+          </div>
+
+          <div class="preview-surface">
+            <article class="resume-paper" id="resumePaper">
+              <header class="resume-header">
+                <h1 id="previewName">Your Name</h1>
+                <p class="resume-role" id="previewTitle">Your Professional Title</p>
+                <div class="contact-line" id="previewContact">Email · Phone · Location</div>
+                <div class="contact-line link-line" id="previewLink"></div>
+              </header>
+
+              <section class="resume-section" id="summarySection">
+                <h2>PROFILE</h2>
+                <p id="previewSummary" class="resume-body muted-placeholder">
+                  Your professional summary will appear here.
+                </p>
+              </section>
+
+              <section class="resume-section" id="experienceSection" hidden>
+                <h2>EXPERIENCE</h2>
+                <div id="previewExperience"></div>
+              </section>
+
+              <section class="resume-section" id="educationSection">
+                <h2>EDUCATION</h2>
+                <div id="previewEducation" class="muted-placeholder">Your education will appear here.</div>
+              </section>
+
+              <section class="resume-section" id="skillsSection">
+                <h2>SKILLS</h2>
+                <div id="previewSkills" class="skill-pills">
+                  <span class="resume-skill placeholder-skill">Your skills here</span>
+                </div>
+              </section>
+
+              <section class="resume-section" id="projectsSection" hidden>
+                <h2>PROJECTS</h2>
+                <div id="previewProjects"></div>
+              </section>
+
+              <section class="resume-section" id="certificationsSection" hidden>
+                <h2>CERTIFICATIONS & ACHIEVEMENTS</h2>
+                <ul id="previewCertifications"></ul>
+              </section>
+
+              <footer class="resume-footer">
+                <span>CRAFTED WITH RESUMEAI</span>
+                <span>YOUR NEXT CHAPTER STARTS HERE.</span>
+              </footer>
+            </article>
+          </div>
+
+          <div class="preview-note">
+            <span class="note-icon">✦</span>
+            <p><strong>Looking good!</strong><br />Complete your details and export a clean, printable resume.</p>
+          </div>
+          <p class="privacy-note">Your draft is saved in this browser on this device.</p>
+        </aside>
+      </div>
+
+      <footer class="app-footer">
+        <span>✦ ResumeAI Studio</span>
+        <span>Built for your next opportunity.</span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
